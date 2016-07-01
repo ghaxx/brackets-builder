@@ -84,7 +84,7 @@ define(function (require, exports, module) {
             var cmd = null;
             var foundLanguage = false;
             builders.forEach(function (el) {
-                if (el.name.toLowerCase() === curOpenLang.toLowerCase()) {
+                if (JSON.stringify(el.name).toLowerCase() === curOpenLang.toLowerCase()) {
                     foundLanguage = true;
                     cmd = el[action];
                 }
