@@ -1,13 +1,11 @@
-/*global require, exports */
-
 (function () {
     "use strict";
 
-    var child_process = require("child_process"),
+    var childProcess = require("child_process"),
         domainName = "builder.execute";
 
     function exec(directory, command, callback) {
-        child_process.exec(command, { cwd: directory}, function (err, stdout, stderr) {
+        childProcess.exec(command, {cwd: directory}, function (err, stdout, stderr) {
             callback(err ? stderr : undefined, err ? undefined : stdout);
         });
     }
@@ -20,7 +18,12 @@
             });
         }
 
-        DomainManager.registerCommand(domainName, "exec", exec, true, "Exec cmd",
+        DomainManager.registerCommand(
+            domainName,
+            "exec",
+            exec,
+            true,
+            "Exec cmd",
             [
                 {
                     name: "directory",
@@ -31,10 +34,12 @@
                     type: "string"
                 }
             ],
-            [{
-                name: "stdout",
-                type: "string"
-            }]
+            [
+                {
+                    name: "stdout",
+                    type: "string"
+                }
+            ]
         );
     };
 

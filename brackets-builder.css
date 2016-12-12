@@ -3,7 +3,8 @@
     overflow: scroll !important;
     height: 150px;
     padding: 5px 10px;
-    white-space: pre;
+    white-space: pre-line;
+    -webkit-user-select: initial;
 }
 
 .command {
