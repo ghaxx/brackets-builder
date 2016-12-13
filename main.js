@@ -1,3 +1,9 @@
+/**
+ * @author Victor Hornets, 2015
+ * @author Kuba Slawinski, 2015
+ * @author Leandro Silva | Grafluxe, 2016
+ */
+
 /*global define, brackets, console, $ */
 
 define(function (require, exports, module) { //jshint ignore:line
@@ -47,6 +53,10 @@ define(function (require, exports, module) { //jshint ignore:line
     }
 
     function processCmdOutput(data) {
+        if (!data) {
+            return "There was problem running your script.";
+        }
+
         data = JSON.stringify(data);
         data = data
             .replace(/\\"/g, "\"")
@@ -64,6 +74,12 @@ define(function (require, exports, module) { //jshint ignore:line
         } else {
             return "\"" + path + "\"";
         }
+    }
+
+    function buildRuntimeStatus(start) {
+        var duration = (new Date().getTime() - start.getTime()) / 1000;
+
+        return "Finished in <b>" + duration + "</b>s";
     }
 
     function executeAction(action) {
@@ -87,8 +103,7 @@ define(function (require, exports, module) { //jshint ignore:line
         }).then(function () {
             var cmd = null,
                 foundLanguage = false,
-                start,
-                duration;
+                start;
 
             builders.forEach(function (el) {
                 if (el.name.toLowerCase() === curOpenLang.toLowerCase()) {
@@ -122,10 +137,6 @@ define(function (require, exports, module) { //jshint ignore:line
                     $("#builder-panel .builder-content").html(processCmdOutput(err));
                 })
                 .then(function (data) {
-                    function buildRuntimeStatus(start) {
-                        duration = (new Date().getTime() - start.getTime()) / 1000;
-                        return "Finished in <b>" + duration + "</b>s";
-                    }
                     $("#builder-panel .builder-content").html(processCmdOutput(data));
                     $("#builder-panel .command .status").html(buildRuntimeStatus(start));
                 });
@@ -147,15 +158,25 @@ define(function (require, exports, module) { //jshint ignore:line
 
     AppInit.appReady(function () {
         var menu,
-            src;
+            src,
+            $tack;
 
         panel = WorkspaceManager.createBottomPanel("brackets-builder-panel", $(panelHTML), 100);
-        $("#builder-panel .close").on("click", function () {
+
+        $("#builder-panel .close.real").on("click", function () {
             panel.hide();
         });
 
+        $tack = $("#builder-panel .tack");
+
+        $tack.on("click", function () {
+            $tack.toggleClass("tack-on");
+        });
+
         MainViewManager.on("currentFileChange", function () {
-          panel.hide();
+            if (!$tack.hasClass("tack-on")) {
+                panel.hide();
+            }
         });
 
         CommandManager.register("Run", "builder.run", run);
@@ -167,7 +188,7 @@ define(function (require, exports, module) { //jshint ignore:line
         menu = Menus.getMenu(menuId);
         menu.addMenuItem("builder.run", "F9");
         menu.addMenuItem("builder.compile", "F10");
-        menu.addMenuItem("builder.runCompiled", "F11");
+        menu.addMenuItem("builder.runCompiled", "shift-F10");
 
         // Add menu item to edit .json file
         menu = Menus.getMenu(Menus.AppMenuBar.EDIT_MENU);

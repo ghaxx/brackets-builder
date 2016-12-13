@@ -13,6 +13,12 @@
         "README.md",
         "builder.json"
     ],
-    "contributors": ["Ghaxx", "Vhornets", "rwinzcyruz", "IonicaBizau"],
+    "contributors": [
+      "Leandro Silva (http://grafluxe.com)",
+      "Ghaxx",
+      "Vhornets",
+      "rwinzcyruz",
+      "IonicaBizau"
+    ],
     "keywords": ["builder"]
 }

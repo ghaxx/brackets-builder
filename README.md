@@ -2,15 +2,17 @@
 
 Forked from <https://github.com/ghaxx/brackets-script-builder>
 
+For new features, see the changelog below.
+
 Allows to run programs contained in one file (can be used for Scala, Java, Python, Ruby, Node, C++, Bash, PHP) from Brackets and display results in panel. It is possible to create own build systems via 'Edit > Script Builder Configuration' menu item and editing opened JSON file (you need to restart Brackets afterwards).
 
-Based on Brackets Builder (http://github.com/Vhornets/brackets-builder).
+Based on [Brackets Builder](http://github.com/Vhornets/brackets-builder).
 
 Keyboard shortcuts:
 
-- F9 to run current file as a script.
-- F10 to compile current file.
-- F11 to run compilation result.
+- F9 = Run script.
+- F10 = Compile script.
+- Shift-F10 = Run compiled script.
 
 ***
 
@@ -28,7 +30,10 @@ Keyboard shortcuts:
   - Include .jslintrc file.
 - Remove menu error.
 - Replace deprecated Brackets method.
-- Hide panel on file change.
+- Add new 'tack' button to panel.
+  - Tack on = Hide panel on file change (default setting).
+  - Tack off = Keep panel open on file change.
+- Change F11 keyboard shortcut to Shift-F10 (for better OS X compatibility).
 
 ## Environment Variables
 

@@ -2,7 +2,7 @@
     font-family: monospace;
     overflow: scroll !important;
     height: 150px;
-    padding: 5px 10px;
+    padding: 0 10px;
     white-space: pre-line;
     -webkit-user-select: initial;
 }
@@ -19,7 +19,7 @@
 }
 
 .command .text:before {
-    content: '> ';
+    content: "> ";
 }
 
 .command .status {
@@ -31,4 +31,16 @@
 .command .status b {
     color: hsl(0, 0%, 35%);
     font-weight: bold;
+}
+
+.tack {
+    right: 36px !important;
+    top: 15px !important;
+    font-size: 15px;
+    padding: 0 5px;
+}
+
+.tack-on {
+    transform: scaleY(-1);
+    top: 13px !important;
 }
