@@ -16,7 +16,7 @@
     },
     {
         "name": "JavaScript",
-        "run": "node $FILE"
+        "run": "node --harmony $FILE"
     },
     {
         "name": "Ruby",
@@ -25,5 +25,13 @@
     {
         "name": "Golang",
         "run": "go build"
+    },
+    {
+        "name": "PHP",
+        "run": "php $FILE"
+    },
+    {
+        "name": "Bash",
+        "run": "sh $FILE"
     }
 ]
