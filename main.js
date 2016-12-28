@@ -106,7 +106,7 @@ define(function (require, exports, module) { //jshint ignore:line
                 start;
 
             builders.forEach(function (el) {
-                if (el.name.toLowerCase() === curOpenLang.toLowerCase()) {
+                if (JSON.stringify(el.name).toLowerCase() === curOpenLang.toLowerCase()) {
                     foundLanguage = true;
                     cmd = el[action];
                 }
