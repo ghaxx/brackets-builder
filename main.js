@@ -54,7 +54,7 @@ define(function (require, exports, module) { //jshint ignore:line
 
     function processCmdOutput(data) {
         if (!data) {
-            return "There was problem running your script.";
+            return "<span style='color:#999'>Your script has no output.</span>";
         }
 
         data = JSON.stringify(data);
