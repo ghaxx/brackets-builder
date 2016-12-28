@@ -53,10 +53,6 @@ define(function (require, exports, module) { //jshint ignore:line
     }
 
     function processCmdOutput(data) {
-        if (!data) {
-            return "There was problem running your script.";
-        }
-
         data = JSON.stringify(data);
         data = data
             .replace(/\\"/g, "\"")
