@@ -57,7 +57,7 @@ define(function (require, exports, module) { //jshint ignore:line
             return "<span style='color:#999'>Your script has no output.</span>";
         }
 
-        data = JSON.stringify(data);
+        data = JSON.stringify(data).replace(/ /g, "\u00A0");
         data = data
             .replace(/\\"/g, "\"")
             .replace(/\\r/g, "\r")
@@ -65,6 +65,7 @@ define(function (require, exports, module) { //jshint ignore:line
             .replace(/\\n/g, "\n")
             .replace(/\\n/g, "\n")
             .replace(/^"|"$/g, "");
+
         return data;
     }
 
