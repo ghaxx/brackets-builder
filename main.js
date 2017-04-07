@@ -137,7 +137,7 @@ define(function (require, exports, module) { //jshint ignore:line
                     $("#builder-panel .builder-content").html(processCmdOutput(err));
                 })
                 .then(function (data) {
-                    $("#builder-panel .builder-content").html(processCmdOutput(data));
+                    $("#builder-panel .builder-content").text(processCmdOutput(data));
                     $("#builder-panel .command .status").html(buildRuntimeStatus(start));
                 });
             }
