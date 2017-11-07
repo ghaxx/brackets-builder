@@ -84,7 +84,7 @@ define(function (require, exports, module) { //jshint ignore:line
     }
 
     function executeAction(action) {
-        CommandManager.execute("file.saveAll");
+        CommandManager.execute("file.save");
         $("#builder-panel .builder-content").html("");
 
         curOpenDir      = securePath(DocumentManager.getCurrentDocument().file._parentPath);
