@@ -54,10 +54,10 @@ define(function (require, exports, module) { //jshint ignore:line
 
     function processCmdOutput(data) {
         if (!data) {
-            return "<span style='color:#999'>Your script has no output.</span>";
+            return null;
         }
 
-        data = JSON.stringify(data);
+        data = JSON.stringify(data).replace(/ /g, "\u00A0");
         data = data
             .replace(/\\"/g, "\"")
             .replace(/\\r/g, "\r")
@@ -65,6 +65,7 @@ define(function (require, exports, module) { //jshint ignore:line
             .replace(/\\n/g, "\n")
             .replace(/\\n/g, "\n")
             .replace(/^"|"$/g, "");
+
         return data;
     }
 
@@ -83,7 +84,7 @@ define(function (require, exports, module) { //jshint ignore:line
     }
 
     function executeAction(action) {
-        CommandManager.execute("file.saveAll");
+        CommandManager.execute("file.save");
         $("#builder-panel .builder-content").html("");
 
         curOpenDir      = securePath(DocumentManager.getCurrentDocument().file._parentPath);
@@ -137,7 +138,12 @@ define(function (require, exports, module) { //jshint ignore:line
                     $("#builder-panel .builder-content").html(processCmdOutput(err));
                 })
                 .then(function (data) {
-                    $("#builder-panel .builder-content").text(processCmdOutput(data));
+                    if (!data) {
+                      $("#builder-panel .builder-content").html("<span style='color:#999'>Your script has no output.</span>");
+                    } else {
+                      $("#builder-panel .builder-content").text(processCmdOutput(data));
+                    }
+
                     $("#builder-panel .command .status").html(buildRuntimeStatus(start));
                 });
             }
