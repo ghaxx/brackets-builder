@@ -16,7 +16,7 @@
     },
     {
         "name": "JavaScript",
-        "run": "/usr/local/bin/node --harmony $FILE"
+        "run": "node --harmony $FILE"
     },
     {
         "name": "Ruby",
